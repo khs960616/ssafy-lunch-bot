@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.listen(process.env.PORT, ()=>{
-    cron.schedule('0 0 7 ? 1-5 *', async ()=>{
+    cron.schedule('0 0 7 * * 1-5', async ()=>{
         const sessionValue = await login();
         const currentDate = new Date().toISOString().split('T')[0].replace(/-/gi, "");
         const menus: DailyMenu[] = await getDailyLunchMenu(currentDate, sessionValue);
