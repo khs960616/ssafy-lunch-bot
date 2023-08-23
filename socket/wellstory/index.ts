@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import axios from "axios";
+import { DailyMenu } from "./type";
 
 dotenv.config();
 
@@ -17,8 +18,17 @@ export const login = async() => {
     return response.headers["set-cookie"][0].split(";")[0]+";";
 }
 
-export const getDailyLunchMenu = async(date: string, cookie: string) => {
-    const response = await axiosInstance.get(`/api/meal?menuDt=${date}`, {
-        
+export const getDailyLunchMenu = async(date: string, cookie: string):Promise<DailyMenu[]> => {
+    let response: any;
+
+    try {
+    response = await axiosInstance.get(`/api/meal?menuDt=${date}&menuMealType=2&restaurantCode=REST000133`, {
+        headers: {
+            Cookie: cookie
+        }
     });
+    } catch(e) {
+        console.log(e);
+    }
+    return response.data.data.mealList;
 };
