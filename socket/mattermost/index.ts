@@ -12,7 +12,7 @@ export const sendLunchMenu = async(dailyMenus: DailyMenu[])=>{
     const currentDate = new Date().toISOString().split('T')[0];
     const formmatingMenus = lunchFormatter(dailyMenus);
     mattermost.send({
-        text: `> ###${currentDate} 서울 캠퍼스 점심 메뉴`,
+        text: `> ### ${currentDate} 서울 캠퍼스 점심 메뉴`,
         channel: CHANNEL,
         attachments: formmatingMenus,
     });
