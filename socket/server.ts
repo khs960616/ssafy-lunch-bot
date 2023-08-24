@@ -10,7 +10,6 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.listen(process.env.PORT, ()=>{
-    console.log("#######");
     const date = new Date();
     date.setHours(date.getHours()+9);
     console.log(date);
