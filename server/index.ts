@@ -25,7 +25,10 @@ const lunchFormatter = (menus: any) => {
 };
 
 const sendLunchMenu = async (dailyMenus: any) => {
-    const currentDate = new Date().toISOString().split('T')[0];
+    const date = new Date();
+    date.setHours(date.getHours() + 9);
+    
+    const currentDate = date.toISOString().split('T')[0];
     const formmatingMenus = lunchFormatter(dailyMenus);
     mattermost.send({
         text: `> ### ${currentDate} 서울 캠퍼스 점심 메뉴`,
