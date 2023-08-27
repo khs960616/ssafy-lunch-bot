@@ -18,3 +18,12 @@ npm build
 4. Aws EventBridge 일정 생성 ->  EventBridge 일정 -> 반복 일정 -> cron 기반 일정 
 5. Invoke 대상 설정 -> 0에서 만든 lambda function 선택
 ```
+
+추가적으로 .env 파일의 경우 aws lambda function -> 구성 -> 환경변수에서 key, value 형태로 등록
+```
+WELLSTORY_ID   웰스토리 아이디
+WELLSTORY_PASSWORD 웰스토리 패스워드 
+CHANNEL_NAME   Matter Most에서 만든  채널명
+MATTER_MOST_HOOK  Matter Most Hook 주소
+WELLSTORY_BASE_URL https://welplus.welstory.com
+```
