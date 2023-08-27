@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/server.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node ./dist/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q ./dist/server.js\""
+    "start": "node ./dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q ./dist/index.js\""
   },
   "keywords": [],
   "author": "",
@@ -14,13 +14,9 @@
   "dependencies": {
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "node-cron": "^3.0.2",
-    "node-mattermost": "^0.0.1",
-    "uuid": "^8.3.2"
+    "node-mattermost": "^0.0.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
     "@types/node": "^20.4.5",
     "@types/uuid": "^9.0.2",
     "concurrently": "^8.2.0",
