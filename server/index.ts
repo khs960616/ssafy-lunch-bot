@@ -30,11 +30,14 @@ const sendLunchMenu = async (dailyMenus: any) => {
     
     const currentDate = date.toISOString().split('T')[0];
     const formmatingMenus = lunchFormatter(dailyMenus);
-    mattermost.send({
+    console.log("Menu Info: ",formmatingMenus);
+    const response = await mattermost.send({
         text: `> ### ${currentDate} 서울 캠퍼스 점심 메뉴`,
         channel: CHANNEL,
         attachments: formmatingMenus,
     });
+
+    console.log("MM Response Result: ",response);
 };
 
 const login = async() => {
@@ -69,14 +72,10 @@ const sendLunchMenuForMM = async () => {
 
     const kstDate = date.toISOString().split('T')[0].replace(/-/gi, "");
     const menus = await getDailyLunchMenu(kstDate, sessionValue);
-    console.log(menus);
-    if (menus.length) {
-        sendLunchMenu(menus);
-    }
+    await sendLunchMenu(menus);
 }
 
 exports.handler = async function (event: any) {
-    console.log("####");
     await sendLunchMenuForMM();
     return 200;
   };
