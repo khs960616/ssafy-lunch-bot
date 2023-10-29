@@ -32,7 +32,7 @@ const sendLunchMenu = async (dailyMenus: any) => {
     const formmatingMenus = lunchFormatter(dailyMenus);
     console.log("Menu Info: ",formmatingMenus);
     const response = await mattermost.send({
-        text: `> ### ${currentDate} 서울 캠퍼스 점심 메뉴`,
+        text: `> ### ${currentDate} 서울 캠퍼스 점심 메뉴\n [내일 20층 서울 캠퍼스 메뉴 미리보기](https://ssafsound.com/lunch?campus=%EC%84%9C%EC%9A%B8&date=tomorrow)`,
         channel: CHANNEL,
         attachments: formmatingMenus,
     });
@@ -72,7 +72,9 @@ const sendLunchMenuForMM = async () => {
 
     const kstDate = date.toISOString().split('T')[0].replace(/-/gi, "");
     const menus = await getDailyLunchMenu(kstDate, sessionValue);
-    await sendLunchMenu(menus);
+    if(menus.length) {
+        await sendLunchMenu(menus);
+    }
 }
 
 exports.handler = async function (event: any) {
